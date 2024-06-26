@@ -8,16 +8,18 @@ RUN apk add --no-cache sqlite \
 # 作業ディレクトリの設定
 WORKDIR /app
 
-# # TypeScriptとts-nodeをインストール
+# TypeScriptとts-nodeをインストール
 RUN npm install -g typescript ts-node
 
-# # 依存関係インストール
+# 依存関係インストール
 COPY . .
 RUN npm install
 
-
-# # Prismaクライアントの生成
+# Prismaクライアントの生成
 RUN npx prisma generate
+
+# マイグレーションの実行
+RUN npx prisma migrate deploy
 
 # # ポート3000を開放
 EXPOSE 3000
