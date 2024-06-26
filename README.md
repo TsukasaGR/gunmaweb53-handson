@@ -19,6 +19,16 @@ $ make up
 - `docker compose up --build` が実行され、Dockerコンテナが起動します
 - makeコマンドが使えない方はMakefileを参考に直接コマンドを実行してください
 
+### 2. DBマイグレーション
+
+```
+# ホストPCでDockerコンテナに入り、
+$ make ssh
+
+# Dockerコンテナ内で以下を実行する
+$ npx prisma migrate deploy
+```
+
 ### 2. APIへのアクセス
 
 http://localhost:3000
